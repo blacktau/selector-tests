@@ -8,7 +8,7 @@ export interface Counter {
   group: string
 }
 
-interface CounterState {
+export interface CounterState {
   counters: Counter[]
   intervalId?: number
 }
@@ -21,12 +21,15 @@ const counterSlice = createSlice({
   name: 'counters',
   initialState: initialState,
   reducers: {
-    addCounter: (state) => {
-      state.counters.push({
-        key: nanoid(),
-        counter: 0,
-        group: Math.random() >= 0.5 ? 'a' : 'b'
-      })
+    addCounter: (state, action: PayloadAction<number>) => {
+      for (let i = 0; i < action.payload; i++) {
+        state.counters.push({
+          key: nanoid(),
+          counter: 0,
+          group: Math.random() >= 0.5 ? 'a' : 'b'
+        })
+      }
+      return state
     },
     incrementCounters: (state, action: PayloadAction<string[]>) => {
       state.counters

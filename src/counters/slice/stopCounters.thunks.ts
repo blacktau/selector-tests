@@ -1,4 +1,4 @@
-import { AppThunkConfig } from '../store/store'
+import { AppThunkConfig } from '../../store/store'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getCurrentInterval } from './counters.selectors'
 

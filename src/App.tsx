@@ -7,6 +7,8 @@ import { SimpleSelectorTest } from './simple-selector/SimpleSelectorTest'
 import { ComputedSelectorTest } from './computed/ComputedSelectorTest'
 import { ReselectSelectorTest } from './reselect/ReselectSelectorTest'
 import { CurriedSelectorTest } from './curried/CurriedSelectorTest'
+import { CurriedReselectTest } from './curried-reselect/CurriedReselectTest'
+import { ReverseCurriedReselectTest } from './reverse-curried-reselect/ReverseCurriedReselectTest'
 
 function App () {
   return (
@@ -20,15 +22,19 @@ function App () {
               <li><NavLink to='/computed'>Computed</NavLink></li>
               <li><NavLink to='/reselect'>Reselect</NavLink></li>
               <li><NavLink to='/curried'>Curried</NavLink></li>
+              <li><NavLink to='/curried-reselect'>Curried Reselect</NavLink></li>
+              <li><NavLink to='/reverse-curried-reselect'>Reverse Curried Reselect</NavLink></li>
             </ol>
           </nav>
         </header>
-      <Switch>
-        <Route exact path='/simple'><SimpleSelectorTest /></Route>
-        <Route exact path='/computed'><ComputedSelectorTest /></Route>
-        <Route exact path='/reselect'><ReselectSelectorTest /></Route>
-        <Route exact path='/curried'><CurriedSelectorTest /></Route>
-      </Switch>
+        <Switch>
+          <Route exact path='/simple'><SimpleSelectorTest /></Route>
+          <Route exact path='/computed'><ComputedSelectorTest /></Route>
+          <Route exact path='/reselect'><ReselectSelectorTest /></Route>
+          <Route exact path='/curried'><CurriedSelectorTest /></Route>
+          <Route exact path='/curried-reselect'><CurriedReselectTest /></Route>
+          <Route exact path='/reverse-curried-reselect'><ReverseCurriedReselectTest /></Route>
+        </Switch>
       </BrowserRouter>
     </Provider>
   )
