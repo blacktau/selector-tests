@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit'
 import memoize from 'lodash/memoize'
 import { FC } from 'react'
 import { CounterControl } from '../counters/components/CounterControl'
-import { CounterDisplay } from '../counters/components/CounterDisplay'
+import { CounterTable } from '../counters/components/CounterTable'
 import { TestHeader } from '../counters/components/TestHeader'
 import { getAllCounters } from '../counters/slice/counters.selectors'
 import { useAppSelector } from '../store/store.hooks'
@@ -27,12 +27,18 @@ const makeCounterSelector = (key: string) => {
   )
 }`}/>
       <CounterControl />
-      <CounterDisplay >
-        { countersA?.map(c => (<Counter key={c.key} counterKey={c.key} />))}
-      </CounterDisplay>
-      <CounterDisplay>
-        { countersB?.map(c => (<Counter key={c.key} counterKey={c.key} />)) }
-      </CounterDisplay>
+      <div className='container'>
+        <div className='column'>
+          <CounterTable >
+            { countersA?.map(c => (<Counter key={c.key} counterKey={c.key} />))}
+          </CounterTable>
+        </div>
+        <div className='column'>
+          <CounterTable>
+            { countersB?.map(c => (<Counter key={c.key} counterKey={c.key} />)) }
+          </CounterTable>
+        </div>
+      </div>
     </div>
   )
 }

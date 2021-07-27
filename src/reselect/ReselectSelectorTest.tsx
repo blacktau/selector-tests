@@ -4,7 +4,7 @@ import { useAppSelector } from '../store/store.hooks'
 import { getAllCounters } from '../counters/slice/counters.selectors'
 import { TestHeader } from '../counters/components/TestHeader'
 import { CounterControl } from '../counters/components/CounterControl'
-import { CounterDisplay } from '../counters/components/CounterDisplay'
+import { CounterTable } from '../counters/components/CounterTable'
 import { DefaultCounter } from '../counters/components/DefaultCounter'
 
 export const ReselectSelectorTest: FC = () => {
@@ -23,12 +23,18 @@ const groupBSelector = createSelector(
   (selectors) => (selectors.filter(c => c.group === 'b'))
 )`}/>
       <CounterControl />
-      <CounterDisplay>
-        { countersA?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
-      </CounterDisplay>
-      <CounterDisplay>
-        { countersB?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
-      </CounterDisplay>
+      <div className='container'>
+        <div className='column'>
+          <CounterTable>
+            { countersA?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
+          </CounterTable>
+        </div>
+        <div className='column'>
+          <CounterTable>
+            { countersB?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
+          </CounterTable>
+        </div>
+      </div>
     </div>
   )
 }

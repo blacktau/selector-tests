@@ -6,7 +6,7 @@ import { TestHeader } from '../counters/components/TestHeader'
 import { getAllCounters } from '../counters/slice/counters.selectors'
 import { useAppSelector } from '../store/store.hooks'
 
-export const CurriedReselectTest: FC = () => {
+export const SudoReselectTest: FC = () => {
   const groupASelector = makeGroupSelector('a')
   const groupBSelector = makeGroupSelector('b')
   const countersA = useAppSelector(groupASelector)
@@ -14,19 +14,22 @@ export const CurriedReselectTest: FC = () => {
 
   return (
     <div>
-      <TestHeader title='Curried Selector Test' selectorCode={String.raw`const makeGroupSelector = (group: string) => {
+      <TestHeader title='Sudo state Reselect Test' selectorCode={String.raw`const makeGroupSelector = (group: string) => {
   return createSelector(
+    state => (group),
     getAllCounters,
-    (selectors) => (selectors.filter(c => c.group === group))
+    (g, selectors) => (selectors.filter(c => c.group === g))
   )
 }
 
 const makeCounterSelector = (key: string) => {
   return createSelector(
+    state => (key),
     getAllCounters,
-    (selectors) => (selectors.find(c => c.key === key))
+    (k, selectors) => (selectors.find(c => c.key === k))
   )
-}`}/>
+}
+`}/>
       <CounterControl />
       <div className='container'>
         <div className='column'>
@@ -58,14 +61,16 @@ const Counter: FC<{ counterKey: string }> = ({ counterKey }) => {
 
 const makeGroupSelector = (group: string) => {
   return createSelector(
+    state => (group),
     getAllCounters,
-    (selectors) => (selectors.filter(c => c.group === group))
+    (g, selectors) => (selectors.filter(c => c.group === g))
   )
 }
 
 const makeCounterSelector = (key: string) => {
   return createSelector(
+    state => (key),
     getAllCounters,
-    (selectors) => (selectors.find(c => c.key === key))
+    (k, selectors) => (selectors.find(c => c.key === k))
   )
 }

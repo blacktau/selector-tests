@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { CounterControl } from '../counters/components/CounterControl'
-import { CounterDisplay } from '../counters/components/CounterDisplay'
+import { CounterTable } from '../counters/components/CounterTable'
 import { SelectorCounter } from '../counters/components/SelectorCounter'
 import { TestHeader } from '../counters/components/TestHeader'
 import { RootState } from '../store/store'
@@ -18,12 +18,19 @@ export const CurriedSelectorTest: FC = () => {
   return state.counters.counters.filter(c => c.group === group)
 }`}/>
       <CounterControl />
-      <CounterDisplay>
-        { countersA?.map(c => (<SelectorCounter key={c.key} counterKey={c.key} selector={makeCounterSelector} />)) }
-      </CounterDisplay>
-      <CounterDisplay>
-        { countersB?.map(c => (<SelectorCounter key={c.key} counterKey={c.key} selector={makeCounterSelector} />)) }
-      </CounterDisplay>
+
+      <div className='container'>
+        <div className='column'>
+          <CounterTable >
+            { countersA?.map(c => (<SelectorCounter key={c.key} counterKey={c.key} selector={makeCounterSelector} />))}
+          </CounterTable>
+        </div>
+        <div className='column'>
+          <CounterTable>
+            { countersB?.map(c => (<SelectorCounter key={c.key} counterKey={c.key} selector={makeCounterSelector} />)) }
+          </CounterTable>
+        </div>
+      </div>
     </div>
   )
 }

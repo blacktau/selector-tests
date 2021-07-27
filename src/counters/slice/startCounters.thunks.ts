@@ -7,11 +7,9 @@ export const startCounters = createAsyncThunk<number, undefined, AppThunkConfig>
   'counters/start',
   async (_, { dispatch, getState }) => {
     return window.setInterval(() => {
-      window.requestAnimationFrame(() => {
-        const counterKeys = getAllCounters(getState()).filter(c => Math.random() < 0.2).map(c => c.key)
-        dispatch(incrementCounters(counterKeys))
-      })
-    }, 10)
+      const counterKeys = getAllCounters(getState()).filter(c => Math.random() < 0.01).map(c => c.key)
+      dispatch(incrementCounters(counterKeys))
+    }, 5)
   },
   {
     condition: (_, { getState }) => {

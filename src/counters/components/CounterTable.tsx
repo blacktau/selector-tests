@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { Counter } from '../slice/counters.slice'
 
-export interface CounterDisplayProps {
+export interface CounterTableProps {
   counters?: Counter[]
 }
 
-export const CounterDisplay: FC = ({ children }) => {
+export const CounterTable: FC = ({ children }) => {
   return (
     <table>
     <thead>

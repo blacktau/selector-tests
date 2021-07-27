@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { CounterControl } from '../counters/components/CounterControl'
-import { CounterDisplay } from '../counters/components/CounterDisplay'
+import { CounterTable } from '../counters/components/CounterTable'
 import { DefaultCounter } from '../counters/components/DefaultCounter'
 import { TestHeader } from '../counters/components/TestHeader'
 import { RootState } from '../store/store'
@@ -20,12 +20,18 @@ const groupBSelector = (state: RootState) => {
   return state.counters.counters.filter(c => c.group === 'b')
 }`}/>
       <CounterControl />
-      <CounterDisplay>
-        { countersA?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
-      </CounterDisplay>
-      <CounterDisplay>
-        { countersB?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
-      </CounterDisplay>
+      <div className='container'>
+        <div className='column'>
+          <CounterTable>
+            { countersA?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
+          </CounterTable>
+        </div>
+        <div className='column'>
+          <CounterTable>
+            { countersB?.map(c => (<DefaultCounter key={c.key} counter={c} />)) }
+          </CounterTable>
+        </div>
+      </div>
     </div>
   )
 }

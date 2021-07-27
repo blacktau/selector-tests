@@ -33,8 +33,16 @@ const counterSlice = createSlice({
     },
     incrementCounters: (state, action: PayloadAction<string[]>) => {
       state.counters
-        .filter(c => action.payload.some(k => k === c.key))
+        .filter(c => action.payload.includes(c.key))
         .forEach(c => c.counter++)
+      return state
+    },
+    removeCounters: (state, action: PayloadAction<string[]>) => {
+      state.counters = state.counters.filter(c => !action.payload.includes(c.key))
+      return state
+    },
+    clearCounters: (state) => {
+      state.counters = []
       return state
     }
   },
@@ -53,4 +61,4 @@ const counterSlice = createSlice({
 
 export const counterReducer = counterSlice.reducer
 
-export const { incrementCounters, addCounter } = counterSlice.actions
+export const { incrementCounters, addCounter, removeCounters, clearCounters } = counterSlice.actions
