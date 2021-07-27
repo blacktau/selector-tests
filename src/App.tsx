@@ -11,6 +11,7 @@ import { CurriedReselectTest } from './curried-reselect/CurriedReselectTest'
 import { ReverseCurriedReselectTest } from './reverse-curried-reselect/ReverseCurriedReselectTest'
 import { SudoReselectTest } from './sudo-reselect/SudoReselectTest'
 import { CustomReselectTest } from './custom-reselect/CustomReselectTest'
+import { Home } from './Home'
 
 function App () {
   return (
@@ -31,6 +32,7 @@ function App () {
           </nav>
         </header>
         <Switch>
+          <Route exact path='/'><Home /></Route>
           <Route exact path='/simple'><SimpleSelectorTest /></Route>
           <Route exact path='/computed'><ComputedSelectorTest /></Route>
           <Route exact path='/reselect'><ReselectSelectorTest /></Route>
