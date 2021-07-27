@@ -15,7 +15,7 @@ import { CustomReselectTest } from './custom-reselect/CustomReselectTest'
 function App () {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename='selector-tests'>
         <header>
           <div className='logo'>Redux Selector Test Bench</div>
           <nav>
